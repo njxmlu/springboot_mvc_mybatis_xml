@@ -1,0 +1,13 @@
+request: {"username":"luyi33444","age":12,"ctm":"2018-05-03T10:08:56"}
+
+项目说明：springboot+mvc+mybatic（xml配置文件形式）
+
+SpringMVC处理Date类型的成员变量方法
+在使用 SpringMVC 的时候，我们可能需要将一个对象从 View 传递给 Controller 。而当这个 Object 只是一些简单的 String ， int 或者 boolean 类型的成员变量时，SpringMVC 能自动将 View 层的 JSON 包含的 String 类型转换为 Object 成员变量相应的类型。但是当这个 Object 包 Date 类型的成员变量的时候， SpringMVC 在将 String转换成 Date 类型时，就会出错，报异常。但是我们又需要使用 Date 类型的时候，其实 Spring 给我们提供了简单的操作方式可以完成这个任务的。
+     SpringMVC 提供了一个注解 @DateTimeFormat 。可以将 View 传过来的 String类型转换为 Date 类型。具体使用方式很简单，直接在成员变量上加入注解就可以了，同时还可以指定 format 的格式，如下所示：
+public class Person {
+  private String name;
+  //直接在date类型上加入注解，同时指定格式样式
+  @DateTimeFormat( pattern = "yyyy-MM-dd" )
+  private Date birthday;
+}

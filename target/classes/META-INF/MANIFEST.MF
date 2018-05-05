@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: sb.mybatis.exam
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: lenovo
+Implementation-Vendor-Id: com.xmlu.st.mybatis.exam
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/sb.mybatis.exam
+Created-By: Maven Integration for Eclipse
+

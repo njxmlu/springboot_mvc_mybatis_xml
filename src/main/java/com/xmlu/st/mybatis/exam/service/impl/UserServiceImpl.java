@@ -1,4 +1,4 @@
-package com.xmlu.st.mybatis.exam.service;
+package com.xmlu.st.mybatis.exam.service.impl;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.xmlu.st.mybatis.exam.bean.User;
 import com.xmlu.st.mybatis.exam.mapper.UserMapper;
-import com.xmlu.st.mybatis.exam.service.UserService;
+import com.xmlu.st.mybatis.exam.service.IUserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private UserMapper userMapper;

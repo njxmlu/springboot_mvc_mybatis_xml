@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xmlu.st.mybatis.exam.bean.User;
 
-public interface UserService {
+public interface IUserService {
 
 	User getUserById(Integer id);
 

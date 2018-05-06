@@ -1,0 +1,7 @@
+com\xmlu\st\mybatis\exam\bean\User.class
+com\xmlu\st\mybatis\exam\controller\UserController.class
+com\xmlu\st\mybatis\exam\service\impl\UserServiceImpl.class
+com\xmlu\st\mybatis\exam\bean\JsonResult.class
+com\xmlu\st\mybatis\exam\SpringbootApplication.class
+com\xmlu\st\mybatis\exam\mapper\UserMapper.class
+com\xmlu\st\mybatis\exam\service\IUserService.class

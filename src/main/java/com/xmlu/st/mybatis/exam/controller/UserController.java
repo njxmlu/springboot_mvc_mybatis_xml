@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlu.st.mybatis.exam.bean.JsonResult;
 import com.xmlu.st.mybatis.exam.bean.User;
-import com.xmlu.st.mybatis.exam.service.UserService;
+import com.xmlu.st.mybatis.exam.service.IUserService;
 
 @RestController
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	/**
 	 * 根据ID查询用户

@@ -6,11 +6,13 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
-		<result column="ctm" property="ctm" jdbcType="TIMESTAMP" />
+		<result column="time" property="time" jdbcType="TIME" />
+		<result column="year" property="year" jdbcType="VARCHAR"/>
+		<result column="date" property="date" jdbcType="DATE" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id, username, age, ctm
+		id, username, age, ctm,time,date,year
 	</sql>
 
 	<select id="getUserList" resultMap="BaseResultMap">

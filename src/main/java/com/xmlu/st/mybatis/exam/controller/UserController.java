@@ -27,16 +27,16 @@ public class UserController {
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-	public ResponseEntity<JsonResult> getUserById(@PathVariable(value = "id") Integer id) {
-		JsonResult r = new JsonResult();
+	public ResponseEntity<JsonResult<User>> getUserById(@PathVariable(value = "id") Integer id) {
+		JsonResult<User> r = new JsonResult<>();
 		try {
 			User user = userService.getUserById(id);
 			r.setResult(user);
 			r.setStatus("ok");
 		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			JsonResult<String> error = new JsonResult<>();
+			error.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
-			e.printStackTrace();
 		}
 		return ResponseEntity.ok(r);
 	}
@@ -47,16 +47,16 @@ public class UserController {
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "users", method = RequestMethod.GET)
-	public ResponseEntity<JsonResult> getUserList() {
-		JsonResult r = new JsonResult();
+	public ResponseEntity<JsonResult<List<User>>> getUserList() {
+		JsonResult<List<User>> r = new JsonResult<>();
 		try {
 			List<User> users = userService.getUserList();
 			r.setResult(users);
 			r.setStatus("ok");
 		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
-			r.setStatus("error");
-			e.printStackTrace();
+			JsonResult<String> error = new JsonResult<>();
+			error.setResult(e.getClass().getName() + ":" + e.getMessage());
+			error.setStatus("error");
 		}
 		return ResponseEntity.ok(r);
 	}
@@ -68,8 +68,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "user", method = RequestMethod.POST)
-	public ResponseEntity<JsonResult> add(@RequestBody User user) {
-		JsonResult r = new JsonResult();
+	public ResponseEntity<JsonResult<Integer>> add(@RequestBody User user) {
+		JsonResult<Integer> r = new JsonResult<>();
 		try {
 			int orderId = userService.add(user);
 			if (orderId < 0) {
@@ -80,10 +80,9 @@ public class UserController {
 				r.setStatus("ok");
 			}
 		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
-			r.setStatus("error");
-
-			e.printStackTrace();
+			JsonResult<String> error = new JsonResult<>();
+			error.setResult(e.getClass().getName() + ":" + e.getMessage());
+			error.setStatus("error");
 		}
 		return ResponseEntity.ok(r);
 	}
@@ -95,8 +94,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<JsonResult> delete(@PathVariable(value = "id") Integer id) {
-		JsonResult r = new JsonResult();
+	public ResponseEntity<JsonResult<Integer>> delete(@PathVariable(value = "id") Integer id) {
+		JsonResult<Integer> r = new JsonResult<>();
 		try {
 			int ret = userService.delete(id);
 			if (ret < 0) {
@@ -107,10 +106,9 @@ public class UserController {
 				r.setStatus("ok");
 			}
 		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
-			r.setStatus("error");
-
-			e.printStackTrace();
+			JsonResult<String> error = new JsonResult<>();
+			error.setResult(e.getClass().getName() + ":" + e.getMessage());
+			error.setStatus("error");
 		}
 		return ResponseEntity.ok(r);
 	}
@@ -122,8 +120,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "user/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<JsonResult> update(@PathVariable("id") Integer id, @RequestBody User user) {
-		JsonResult r = new JsonResult();
+	public ResponseEntity<JsonResult<Integer>> update(@PathVariable("id") Integer id, @RequestBody User user) {
+		JsonResult<Integer> r = new JsonResult<>();
 		try {
 			int ret = userService.update(id, user);
 			if (ret < 0) {
@@ -134,10 +132,9 @@ public class UserController {
 				r.setStatus("ok");
 			}
 		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			JsonResult<String> error = new JsonResult<>();
+			error.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
-
-			e.printStackTrace();
 		}
 		return ResponseEntity.ok(r);
 	}

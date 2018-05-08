@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmlu.st.mybatis.exam.mapper.StudentMapper">
+    <resultMap id="StudentResultMap"
+		type="com.xmlu.st.mybatis.exam.bean.StudentEntity">
+		<id property="stuID" column="stuno" jdbcType="INTEGER"/>
+		<result property="stuName" column="stuname" />
+		<result property="stuAge" column="stuage" />
+		<result property="stuAddress" column="stuaddress" />
+	</resultMap>
+	<select id="getStudentByClassID" resultMap="StudentResultMap"
+		parameterType="java.lang.Integer">
+		select stuno,stuname,stuage,stuaddress
+		from student_t
+		where classid = #{clazzID}
+	</select>
+	
+	<resultMap id="ClazzResultMap" type="com.xmlu.st.mybatis.exam.bean.ClazzEntity">
+		<id column="classid" property="clazzID" jdbcType="INTEGER" />
+		<result column="classname" property="clazzName" jdbcType="VARCHAR" />
+		<collection property="studentList" column="classid"
+			javaType="list" ofType="com.xmlu.st.mybatis.exam.bean.StudentEntity"
+			select="getStudentByClassID" />
+	</resultMap>
+
+	<select id="getClassByClassID" resultMap="ClazzResultMap"
+		parameterType="java.lang.Integer">
+		select classid,classname
+		from class_t
+		where classid = #{clazzID}
+	</select>
+</mapper>

@@ -1,15 +1,12 @@
 package com.xmlu.st.mybatis.exam.bean;
 
-public class JsonResult {
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-	private String status = null;
+public class JsonResult<T> {
 
-	private Object result = null;
+	private String status;
 
-	public JsonResult status(String status) {
-		this.status = status;
-		return this;
-	}
+	private T result;
 
 	public String getStatus() {
 		return status;
@@ -19,11 +16,16 @@ public class JsonResult {
 		this.status = status;
 	}
 
-	public Object getResult() {
+	public T getResult() {
 		return result;
 	}
 
-	public void setResult(Object result) {
+	public void setResult(T result) {
 		this.result = result;
+	}
+
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 }

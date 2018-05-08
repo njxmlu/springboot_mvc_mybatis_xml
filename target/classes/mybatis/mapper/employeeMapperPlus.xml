@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmlu.st.mybatis.exam.mapper.EmployeeMapperPlus">
+	<resultMap id="MySimpleEmp"
+		type="com.xmlu.st.mybatis.exam.bean.Employee">
+		<id column="id" property="id" />
+		<result column="last_name" property="lastName" />
+		<!--其他不指定的列会自动封装，建议我们只要写resultMap，就把全部的映射都写上 -->
+		<result column="email" property="email" />
+		<result column="gender" property="gender" />
+	</resultMap>
+
+	<!--resultMap 自定义结果映射规则 -->
+	<select id="getEmpById" resultMap="MySimpleEmp">
+		SELECT * from tbl_employee WHERE id=#{id}
+	</select>
+	<!--联合查询，级联属性封装结果集 -->
+	<resultMap id="MyDifEmp" type="com.xmlu.st.mybatis.exam.bean.Employee">
+		<id column="id" property="id" />
+		<result column="last_name" property="lastName" />
+		<result column="gender" property="gender" />
+		<result column="did" property="dept.id" />
+		<result column="dept_name" property="dept.departmentName" />
+	</resultMap>
+	<!--使用association定义关联的某个对象的封装规则 -->
+	<resultMap id="MyDifEmp2"
+		type="com.xmlu.st.mybatis.exam.bean.Employee">
+		<id column="id" property="id" />
+		<result column="last_name" property="lastName" />
+		<result column="gender" property="gender" />
+		<!--association可以指定联合的javabean对象 -->
+		<!--property="dept"指定哪个属性是联合的对象 -->
+		<!--javatype指定这个属性对象的类型 不能省略 -->
+		<association property="dept"
+			javaType="com.xmlu.st.mybatis.exam.bean.Department">
+			<id column="did" property="id" />
+			<result column="dept_name" property="departmentName" />
+		</association>
+	</resultMap>
+	<select id="getEmpAndDept" resultMap="MyDifEmp2">
+		SELECT e.id id,e.last_name last_name,e.gender gender,e.d_id d_id,d.id did,
+		d.dept_name dept_name FROM tbl_dept d,tbl_employee e WHERE e.d_id=d.id
+		AND e.id=#{id}
+	</select>
+	<!--使用association分布查询 -->
+	<!--1.根据员工id查询员工信息 2.根据员工信息中的did值去查询部门信息 3.部门设置到员工中 -->
+	<resultMap id="MyEmpByStep"
+		type="com.xmlu.st.mybatis.exam.bean.Employee">
+		<id column="id" property="id" />
+		<result column="last_name" property="lastName" />
+		<result column="email" property="email" />
+		<result column="gender" property="gender" />
+		<!--association定义关联对象的封装规则 -->
+		<association property="dept"
+			select="com.xmlu.st.mybatis.exam.mapper.DepartmentMapper.getDeptById" 
+			column="d_id">
+		</association>
+	</resultMap>
+	<select id="getEmpByIdStep" resultMap="MyEmpByStep">
+		SELECT * FROM tbl_employee WHERE id=#{id}
+	</select>
+</mapper>

@@ -1,20 +1,4 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : localhost_3306
-Source Server Version : 50548
-Source Host           : localhost:3306
-Source Database       : mybatis
-
-Target Server Type    : MYSQL
-Target Server Version : 50548
-File Encoding         : 65001
-
-Date: 2018-01-17 21:52:54
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for `tbl_dept`
 -- ----------------------------
@@ -28,9 +12,9 @@ CREATE TABLE `tbl_dept` (
 -- ----------------------------
 -- Records of tbl_dept
 -- ----------------------------
-INSERT INTO `tbl_dept` VALUES ('1', '设计部');
-INSERT INTO `tbl_dept` VALUES ('2', '财务部');
-INSERT INTO `tbl_dept` VALUES ('3', '生产部');
+INSERT INTO `tbl_dept` VALUES ('1', '开发部');
+INSERT INTO `tbl_dept` VALUES ('2', '人事部');
+INSERT INTO `tbl_dept` VALUES ('3', '销售部');
 
 -- ----------------------------
 -- Table structure for `tbl_employee`
@@ -50,8 +34,8 @@ CREATE TABLE `tbl_employee` (
 -- ----------------------------
 -- Records of tbl_employee
 -- ----------------------------
-INSERT INTO `tbl_employee` VALUES ('1', '陈晶晶', '3', '173@qq.com', '1');
-INSERT INTO `tbl_employee` VALUES ('3', '岳海林', '4', '173@qq.com', '2');
-INSERT INTO `tbl_employee` VALUES ('4', '岳海滨', '1', '173@qq.com', '3');
-INSERT INTO `tbl_employee` VALUES ('5', '李四', '2', '173@qq.com', '3');
-INSERT INTO `tbl_employee` VALUES ('7', '张三', '1', '999@qq.com', '1');
+INSERT INTO `tbl_employee` VALUES ('1', 'xmlu', '3', 'accplxm@qq.com', '1');
+INSERT INTO `tbl_employee` VALUES ('3', 'luyi', '4', 'wwq@qq.com', '2');
+INSERT INTO `tbl_employee` VALUES ('4', 'lisi', '1', 'errr@qq.com', '3');
+INSERT INTO `tbl_employee` VALUES ('5', '王武', '2', '139@qq.com', '3');
+INSERT INTO `tbl_employee` VALUES ('7', '赵四', '1', '999@qq.com', '1');

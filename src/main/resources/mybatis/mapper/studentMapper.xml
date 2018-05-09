@@ -8,8 +8,7 @@
 		<result property="stuAge" column="stuage" />
 		<result property="stuAddress" column="stuaddress" />
 	</resultMap>
-	<select id="getStudentByClassID" resultMap="StudentResultMap"
-		parameterType="java.lang.Integer">
+	<select id="getStudentByClassID" resultMap="StudentResultMap" parameterType="java.lang.Integer">
 		select stuno,stuname,stuage,stuaddress
 		from student_t
 		where classid = #{clazzID}
